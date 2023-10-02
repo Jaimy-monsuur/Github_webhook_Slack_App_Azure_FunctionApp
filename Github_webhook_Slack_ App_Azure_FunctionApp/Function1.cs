@@ -54,7 +54,7 @@ namespace Github_webhook_Slack__App_Azure_FunctionApp
             var time = payload.head_commit.timestamp;
 
 
-            //Post to URL
+            //Post to URL 
             httpClient.BaseAddress = new Uri("https://hooks.slack.com/services/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"); // Replace with your target URL
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
