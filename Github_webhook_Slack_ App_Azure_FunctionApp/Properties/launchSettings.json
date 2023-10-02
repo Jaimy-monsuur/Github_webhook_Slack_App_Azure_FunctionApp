@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Github_webhook_Slack__App_Azure_FunctionApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7259",
+      "launchBrowser": false
+    }
+  }
+}
