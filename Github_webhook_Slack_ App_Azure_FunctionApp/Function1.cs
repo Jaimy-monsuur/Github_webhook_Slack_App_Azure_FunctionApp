@@ -48,8 +48,10 @@ namespace Github_webhook_Slack__App_Azure_FunctionApp
 
             // get commit details required to call API
             var commitId = payload.after;
+            var message = payload.head_commit.message;
             var owner = payload.head_commit.author.username;
             var repo = payload.repository.name;
+            var time = payload.head_commit.timestamp;
 
 
             //Post to URL
@@ -60,7 +62,7 @@ namespace Github_webhook_Slack__App_Azure_FunctionApp
 
             var newPayload = new
             {
-                text = "We got data for {commitId} by {owner} on {repo}."
+                text = $"There was a new commit to {repo}, by user: {owner}. Message: {message}, Timestamp: {time}."
             };
 
             string jsonPayload = JsonConvert.SerializeObject(newPayload); // If using JSON payload
@@ -68,7 +70,7 @@ namespace Github_webhook_Slack__App_Azure_FunctionApp
             var slackResponse = httpClient.PostAsync("", content);
 
             // respond
-            response.WriteString($"We got data for {commitId} by {owner} on {repo}.");
+            response.WriteString($"We had a commit.");
 
             return response;
         }
