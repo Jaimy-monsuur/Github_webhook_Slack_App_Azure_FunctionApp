@@ -37,7 +37,7 @@ namespace Github_webhook_Slack__App_Azure_FunctionApp
             // Check if payload is null before logging
             if (payload != null)
             {
-                // Log the payload as a JSON string
+                // Log the payload as a JSON string 
                 _logger.LogInformation("not empty");
             }
             else
