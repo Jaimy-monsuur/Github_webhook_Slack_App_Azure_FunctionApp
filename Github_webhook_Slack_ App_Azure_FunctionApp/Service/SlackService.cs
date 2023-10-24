@@ -13,7 +13,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
             _logger = loggerFactory.CreateLogger<SlackService>(); 
         }
 
-        public async Task SendPayloadToSlack(Slack_Payload payload)
+        public async Task SendPayloadToSlack(SlackPayload payload)
         {
             string? url = Environment.GetEnvironmentVariable("MySlackURL");
 

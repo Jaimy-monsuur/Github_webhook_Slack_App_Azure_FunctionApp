@@ -2,7 +2,7 @@
 
 namespace Github_webhook_Slack_App_Azure_FunctionApp.Model
 {
-    public class Github_Payload : TableEntity
+    public class GithubPayload : TableEntity
     {
         public string? repoName { get; set; }
         public string? repositoryId { get; set; }
@@ -12,9 +12,9 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Model
         public string? commitMessage { get; set; }
         public string? timestamp { get; set; }
 
-        public Github_Payload() { }
+        public GithubPayload() { }
 
-        public Github_Payload(string? repoName,string? repositoryId, string? branchName, string? commitId, string? committedBy, string? commitMessage, string? timestamp)
+        public GithubPayload(string? repoName, string? repositoryId, string? branchName, string? commitId, string? committedBy, string? commitMessage, string? timestamp)
         {
             this.repoName = repoName;
             this.repositoryId = repositoryId;
@@ -29,3 +29,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Model
         }
     }
 }
+
+
+
+

@@ -4,7 +4,9 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
 {
     public interface ILogService
     {
-        Task InsertAsync(Github_Payload payload);
-
+        Task InsertAsync(GithubPayload payload);
+        Task<IEnumerable<GithubPayload>> GetAll();
+        Task<IEnumerable<GithubPayload>> GetByRepo(string partitionKey); //GetByPartitionKeyAsync
+        Task<GithubPayload?> GetById(string id); //GetByRowKeyAsync
     }
 }

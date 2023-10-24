@@ -2,7 +2,7 @@
 
 namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
 {
-    public class LogRepo : BaseRepo<Github_Payload>, ILogRepo
+    public class LogRepo : BaseRepo<GithubPayload>, ILogRepo
     {
         public LogRepo() : base()
         {

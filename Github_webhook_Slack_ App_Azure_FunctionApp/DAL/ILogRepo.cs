@@ -2,5 +2,5 @@
 
 namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
 {
-    public interface ILogRepo : IBaseRepo<Github_Payload> { }
+    public interface ILogRepo : IBaseRepo<GithubPayload> { }
 }

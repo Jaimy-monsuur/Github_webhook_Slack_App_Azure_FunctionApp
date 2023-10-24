@@ -5,7 +5,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Utils
 {
     public class DataMapper
     {
-        public static Github_Payload MapJsonStringToGithub_Payload(string json)
+        public static GithubPayload MapJsonStringToGithub_Payload(string json)
         {
             dynamic payload = JsonConvert.DeserializeObject(json);
             string repoName = payload.repository.name;
@@ -17,12 +17,12 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Utils
             string commitMessage = payload.head_commit.message;
             string timestamp = payload.head_commit.timestamp;
 
-            return new Github_Payload(repoName, repositoryId, branchName, commitId, committedBy, commitMessage, timestamp);
+            return new GithubPayload(repoName, repositoryId, branchName, commitId, committedBy, commitMessage, timestamp);
         }
 
-        public static Slack_Payload MapGithubPayloadToSlackPayload(Github_Payload githubPayload)
+        public static SlackPayload MapGithubPayloadToSlackPayload(GithubPayload githubPayload)
         {
-            return new Slack_Payload(
+            return new SlackPayload(
                 githubPayload.repoName,
                 githubPayload.branchName,
                 githubPayload.committedBy,

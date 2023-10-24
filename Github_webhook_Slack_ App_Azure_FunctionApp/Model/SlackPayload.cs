@@ -2,7 +2,7 @@
 
 namespace Github_webhook_Slack_App_Azure_FunctionApp.Model
 {
-    public class Slack_Payload
+    public class SlackPayload
     {
         public string? repoName { get; set; }
         public string? branchName { get; set; }
@@ -10,7 +10,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Model
         public string? commitMessage { get; set; }
         public string? timestamp { get; set; }
 
-        public Slack_Payload(string? repoName, string? branchName, string? committedBy, string? commitMessage, string? timestamp)
+        public SlackPayload(string? repoName, string? branchName, string? committedBy, string? commitMessage, string? timestamp)
         {
             this.repoName = repoName;
             this.branchName = branchName;

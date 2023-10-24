@@ -1,5 +1,8 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
 {
@@ -9,11 +12,47 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
         protected CloudTableClient _tableClient;
         protected CloudTable _table;
 
-        public BaseRepo() {
+        public BaseRepo()
+        {
             string? connectionString = Environment.GetEnvironmentVariable("MyDatabaseConnection");
             _storageAccount = CloudStorageAccount.Parse(connectionString);
             _tableClient = _storageAccount.CreateCloudTableClient();
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            List<T> entities = new List<T>();
+            TableQuery<T> query = new TableQuery<T>();
+
+            TableContinuationToken token = null;
+            do
+            {
+                var queryResult = await _table.ExecuteQuerySegmentedAsync(query, token);
+                entities.AddRange(queryResult.Results);
+                token = queryResult.ContinuationToken;
+            } while (token != null);
+
+            return entities;
+        }
+
+        public async Task<IEnumerable<T>> GetByPartitionKeyAsync(string partitionKey)
+        {
+            TableQuery<T> query = new TableQuery<T>().Where(
+                TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey));
+
+            var entities = await _table.ExecuteQuerySegmentedAsync(query, null);
+            return entities.Results;
+        }
+
+        public async Task<T?> GetByRowKeyAsync(string rowKey)
+        {
+            TableQuery<T> query = new TableQuery<T>().Where(
+                TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, rowKey));
+
+            var entities = await _table.ExecuteQuerySegmentedAsync(query, null);
+            return entities.FirstOrDefault();
+        }
+
 
         public async Task InsertAsync(T entity)
         {
