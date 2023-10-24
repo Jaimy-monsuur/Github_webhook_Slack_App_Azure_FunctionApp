@@ -40,7 +40,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
             _logger.LogInformation("Attempting to log a git commit.");
             foreach (GithubPayload payload in payloads)
             {
-                await _logRepo.InsertAsync(payload);
+                await _logRepo.InsertAsync(payload); 
             }
         }
     }
