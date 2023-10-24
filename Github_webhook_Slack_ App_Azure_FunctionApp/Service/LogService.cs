@@ -35,10 +35,13 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
             return await _logRepo.GetByPartitionKeyAsync(partitionKey);
         }
 
-        public async Task InsertAsync(GithubPayload payload)
+        public async Task InsertAsync(List<GithubPayload> payloads)
         {
             _logger.LogInformation("Attempting to log a git commit.");
-            await _logRepo.InsertAsync(payload);
+            foreach (GithubPayload payload in payloads)
+            {
+                await _logRepo.InsertAsync(payload);
+            }
         }
     }
 }

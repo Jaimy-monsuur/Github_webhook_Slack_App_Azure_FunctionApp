@@ -4,6 +4,6 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
 {
     public interface ISlackService
     {
-        Task SendPayloadToSlack(SlackPayload payload);
+        Task SendPayloadToSlack(List<SlackPayload> payload);
     }
 }

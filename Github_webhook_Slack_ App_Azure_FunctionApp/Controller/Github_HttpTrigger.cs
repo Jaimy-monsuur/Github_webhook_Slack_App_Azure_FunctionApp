@@ -41,8 +41,8 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
 
             try
             {
-                GithubPayload payload = DataMapper.MapJsonStringToGithub_Payload(requestBody);
-                SlackPayload slack_Payload = DataMapper.MapGithubPayloadToSlackPayload(payload);
+                List<GithubPayload> payload = DataMapper.MapJsonStringToGithub_Payload(requestBody);
+                List<SlackPayload> slack_Payload = DataMapper.MapGithubPayloadToSlackPayload(payload);
                 
                 await  _slackService.SendPayloadToSlack(slack_Payload);
                 await  _logService.InsertAsync(payload);
