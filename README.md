@@ -11,9 +11,6 @@
 
 
 
-Store image on your image server and adjust path/filename/extension if necessary.
-
-
 ![alt_text](images/image6.png "image_tooltip")
 
 
@@ -36,8 +33,7 @@ Select incoming webhook and add it to your workspace. You will get a secret key 
 
 Create a github webhook and set the azure function url as the payload url. I used ngrok to test it.
 
-** \
-Application Set up**
+**Application Set up**
 
 For this application to work add the following to the local.settings.json(or add in azure configuration):
 
@@ -74,9 +70,6 @@ For this application to work add the following to the local.settings.json(or add
 
 **Results table storage**
 
-
-
-Store image on your image server and adjust path/filename/extension if necessary.
 
 
 ![alt_text](images/image3.png "image_tooltip")
