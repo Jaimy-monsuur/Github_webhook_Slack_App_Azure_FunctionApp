@@ -20,9 +20,6 @@ Store image on your image server and adjust path/filename/extension if necessary
 Create a new slack app and select from** From scratch. **And add it to your workspace.
 
 
-Store image on your image server and adjust path/filename/extension if necessary.
-
-
 ![alt_text](images/image4.png "image_tooltip")
 
 
@@ -32,9 +29,6 @@ Select incoming webhook and add it to your workspace. You will get a secret key 
 
 **Github**
 
-
-
-Store image on your image server and adjust path/filename/extension if necessary.
 
 
 ![alt_text](images/image7.png "image_tooltip")
@@ -65,9 +59,6 @@ For this application to work add the following to the local.settings.json(or add
 
 
 
-Store image on your image server and adjust path/filename/extension if necessary.
-
-
 ![alt_text](images/image5.png "image_tooltip")
 
 ![alt_text](images/image1.png "image_tooltip")
@@ -76,9 +67,6 @@ Store image on your image server and adjust path/filename/extension if necessary
 
 **Results slack**
 
-
-
-Store image on your image server and adjust path/filename/extension if necessary.
 
 
 ![alt_text](images/image2.png "image_tooltip")
