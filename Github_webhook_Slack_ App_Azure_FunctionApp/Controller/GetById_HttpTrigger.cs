@@ -12,9 +12,9 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
     {
         private readonly ILogger _logger;
 
-        private readonly ILogService _logService;
+        private readonly IGithubLogService _logService;
 
-        public GetById_HttpTrigger(ILoggerFactory loggerFactory, ILogService logService)
+        public GetById_HttpTrigger(ILoggerFactory loggerFactory, IGithubLogService logService)
         {
             _logger = loggerFactory.CreateLogger<GetById_HttpTrigger>();
             _logService = logService;

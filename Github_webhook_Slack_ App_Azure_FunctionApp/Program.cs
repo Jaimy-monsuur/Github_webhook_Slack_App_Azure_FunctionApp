@@ -7,7 +7,7 @@ var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
     .ConfigureServices(configureServices =>
     {
-       configureServices.AddTransient<ILogService, LogService>();
+       configureServices.AddTransient<IGithubLogService, GithubLogService>();
        configureServices.AddTransient<ISlackService, SlackService>();
        configureServices.AddTransient<ILogRepo, LogRepo>();
     })

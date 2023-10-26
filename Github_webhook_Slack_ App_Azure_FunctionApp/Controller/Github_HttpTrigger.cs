@@ -12,9 +12,9 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
     {
         private readonly ILogger _logger;
         private readonly ISlackService _slackService;
-        private readonly ILogService _logService;
+        private readonly IGithubLogService _logService;
 
-        public Github_HttpTrigger(ILoggerFactory loggerFactory, ISlackService slackService, ILogService logService)
+        public Github_HttpTrigger(ILoggerFactory loggerFactory, ISlackService slackService, IGithubLogService logService)
         {
             _logger = loggerFactory.CreateLogger<Github_HttpTrigger>();
             _slackService = slackService;
@@ -23,7 +23,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
 
 
         [Function("Github_HttpTrigger")]
-        public async Task<HttpResponseData> RunAsync([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
+        public async Task RunAsync([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
         {
             _logger.LogInformation("HTTP trigger function processed a GitHub webhook request");
 
@@ -36,6 +36,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
                 if (string.IsNullOrWhiteSpace(requestBody))
                 {
                     _logger.LogInformation("Request body is empty or whitespace.");
+                    return;
                 }
             }
 
@@ -43,20 +44,14 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Controller
             {
                 List<GithubPayload> payload = DataMapper.MapJsonStringToGithub_Payload(requestBody);
                 List<SlackPayload> slack_Payload = DataMapper.MapGithubPayloadToSlackPayload(payload);
-                
-                await  _slackService.SendPayloadToSlack(slack_Payload);
-                await  _logService.InsertAsync(payload);
-                return req.CreateResponse(HttpStatusCode.OK);
+
+                await _slackService.SendPayloadToSlack(slack_Payload);
+                await _logService.InsertAsync(payload);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error: {ex.Message}");
-                var response = req.CreateResponse(HttpStatusCode.InternalServerError);
-                response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-                response.WriteString("Error");
-                return response;
             }
-
         }
     }
 }

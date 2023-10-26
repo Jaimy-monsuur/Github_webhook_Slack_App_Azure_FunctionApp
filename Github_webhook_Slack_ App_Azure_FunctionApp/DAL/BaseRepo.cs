@@ -53,7 +53,6 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
             return entities.FirstOrDefault();
         }
 
-
         public async Task InsertAsync(T entity)
         {
             TableOperation insertOperation = TableOperation.Insert(entity);

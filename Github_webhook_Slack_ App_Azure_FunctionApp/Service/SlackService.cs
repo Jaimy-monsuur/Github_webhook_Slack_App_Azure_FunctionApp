@@ -26,7 +26,7 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.Service
 
                     if (response.IsSuccessStatusCode)
                     {
-                        _logger.LogInformation("Payload sent to Slack successfully.");
+                        _logger.LogInformation("Payload successfully sent to Slack.");
                     }
                     else
                     {
