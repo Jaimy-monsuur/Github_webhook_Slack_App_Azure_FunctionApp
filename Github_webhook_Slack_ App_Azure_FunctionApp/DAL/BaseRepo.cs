@@ -24,13 +24,10 @@ namespace Github_webhook_Slack_App_Azure_FunctionApp.DAL
             List<T> entities = new List<T>();
             TableQuery<T> query = new TableQuery<T>();
 
-            TableContinuationToken token = null;
-            do
+            foreach (T entity in _table.ExecuteQuerySegmentedAsync(query, null).Result)
             {
-                var queryResult = await _table.ExecuteQuerySegmentedAsync(query, token);
-                entities.AddRange(queryResult.Results);
-                token = queryResult.ContinuationToken;
-            } while (token != null);
+                entities.Add(entity);
+            }
 
             return entities;
         }
